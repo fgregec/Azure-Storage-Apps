@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="IDPerson" ColumnName="IDPerson" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UploadedFiles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UploadedFile)">
+        <MappingFragment StoreEntitySet="UploadedFiles">
+          <ScalarProperty Name="IDUploadedFile" ColumnName="IDUploadedFile" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="PersonIDPerson" ColumnName="PersonIDPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Subject)">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="IDSubject" ColumnName="IDSubject" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PersonIDPerson" ColumnName="PersonIDPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

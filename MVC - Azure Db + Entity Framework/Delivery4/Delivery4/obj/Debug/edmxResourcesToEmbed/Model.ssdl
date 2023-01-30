@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="People" EntityType="Model.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UploadedFiles" EntityType="Model.Store.UploadedFiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="Model.Store.Subjects" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PersonUploadedFile" Association="Model.Store.PersonUploadedFile">
+      <End Role="Person" EntitySet="People" />
+      <End Role="UploadedFile" EntitySet="UploadedFiles" />
+    </AssociationSet>
+    <AssociationSet Name="PersonSubject" Association="Model.Store.PersonSubject">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="IDPerson" />
+    </Key>
+    <Property Name="IDPerson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UploadedFiles">
+    <Key>
+      <PropertyRef Name="IDUploadedFile" />
+    </Key>
+    <Property Name="IDUploadedFile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContentType" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Content" Type="varbinary(max)" Nullable="false" />
+    <Property Name="PersonIDPerson" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="IDSubject" />
+    </Key>
+    <Property Name="IDSubject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="PersonIDPerson" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PersonUploadedFile">
+    <End Role="Person" Type="Model.Store.People" Multiplicity="1" />
+    <End Role="UploadedFile" Type="Model.Store.UploadedFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPerson" />
+      </Principal>
+      <Dependent Role="UploadedFile">
+        <PropertyRef Name="PersonIDPerson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonSubject">
+    <End Role="Person" Type="Model.Store.People" Multiplicity="1" />
+    <End Role="Subject" Type="Model.Store.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="IDPerson" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="PersonIDPerson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

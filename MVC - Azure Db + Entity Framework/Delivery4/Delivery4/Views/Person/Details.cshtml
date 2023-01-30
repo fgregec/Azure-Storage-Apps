@@ -1,0 +1,80 @@
+﻿@model Delivery4.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+        
+        <dt>
+            @Html.Label("Subjects")
+        </dt>
+
+        @foreach(var subject in Model.Subjects)
+         {
+            <dd>
+                <span>@subject</span>
+            </dd>
+         }
+
+        @foreach (var uploadedFile in Model.UploadedFiles)
+        {
+            <dt>
+                @uploadedFile.Name
+            </dt>
+
+            <dd>
+                <img src="~/File?id=@uploadedFile.IDUploadedFile" alt="Picture" width="300" height="200" />
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPerson}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
